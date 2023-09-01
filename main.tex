@@ -1,0 +1,80 @@
+\documentclass[11pt,a4paper]{article}
+\input{./common/preliminaries}
+\input{header.tex}
+\usepackage[]{graphicx} % Required for inserting images
+\usepackage{todonotes}
+
+
+% \title{Bachelor- und Masterprojekt-Zuteilung}
+\author{Fachschaftsrat \& StudStuKo \\ Ben Bals, Armin Wells, Niko Hastrich}
+\date{Mai 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Rahmenbedingungen}
+Wir schlagen vor, dass vor der Abgabe der Präferenzen der Vergabealgorithmus festgelegt und kommuniziert wird. Dies könnte im Fakultätsrat passieren.
+
+\section{Mögliche Optimierungskriterien}
+\subsection{Präferenzsumme}
+Studierende sollten Projekten zugeordnet werden, die ihren Neigungen entsprechen. Das ist nicht nur für Studierende wünschenswert, sondern auch für Betreuende, da ein Projekt, für das sich die Studierenden interessieren (und im besten Fall sogar brennen) im Erwartungswert bessere Ergebnisse liefert und ein besseres Arbeitsklima hat.
+
+Im aktuellen System geben Studierende je einen Erst-, Zweit- und Drittwunsch ab. Summiert man die tatsächlich zugeteilten Präferenzen erhält man dadurch ein Maß, wie gerne die Studierenden die zugeteilten Projekte haben.
+
+Ein Vorteil an diesem Kriterium ist, dass seine Minimierung (zumindest ohne weitere Nebenbedingungen) stabile Zuordnungen erzeugt. 
+
+\subsection{Größe der Projekte}
+Die Größe der Projekte ist für eine qualitativ hochwertige Betreuung und den Projektcharakter ausschlaggebend. Außerdem steht die Größe der Projekte im direkten Zusammenhang mit der Anzahl der Projekte. Sehen wir die Projektgröße als Qualitätsmerkmal, dann ergibt es Sinn, sie direkt in die Zuordnung einzubeziehen.
+
+Eine einfache Möglichkeit wäre, die maximale Teilnehmendenzahl herabzusetzen (z.~B. auf 7). Alternativ dazu könnten jedes volle Projekt mit einem Parameter $x$ im Optimierungskriterium des linearen Programms bestrafen.
+
+\subsection{Anzahl stattfindende Projekte}
+Man könnte die Anzahl mindestens stattfindenden Projekte als Nebenbedingung festsetzen. Dies hat den Vorteil, dass das Risiko auf Seiten der LV-anbietenden verringert wird. Ferner verringert sich die durchschnittliche Anzahl an Teilnehmern pro Projekt, was die Betreuungsquote verbessert.
+
+%\begin{itemize}
+%\item Verringert Risiko bei Professor:innen
+%\item Verbessert *im Schnitt* die Betreuungsquote, kann aber auch mehr outlier erzeugen
+%\end{itemize}
+
+\subsection{Drittwunsch-freie Lösung}
+Der empfundene Unterschied zwischen Erst- und Zweitwünschen sowie Zweit- und Drittwünschen unterscheidet sich stark. Wir würden deshalb eine Zuteilung, die ohne Drittwunsch auskommt in den allermeisten Fällen einer Zuteilung mit Drittwünschen vorziehen. Um dies umzusetzen empfehlen wir eine abweichende Gewichtung von Drittwünschen. Ein erfüllter Erstwunsch gibt 1 Punkt, ein erfüllter Zweitwunsch 2 Punkte, und ein Drittwunsch hingegen $y$ Punkte, wobei wir $y$ getrennt festlegen.
+
+\section{Unser Vorschlag}
+Die folgenden Kriterien finden wir (in Ordnung unserer Präferenz) gut:
+\begin{enumerate}[noitemsep]
+    \item Minimale Präferenzsumme, Drittwünsche werden mit $y=5$ gewichtet,
+    \item Minimale Präferenzsumme, Drittwünsche werden mit $y=5$ gewichtet, unter Mindestanzahl an zustandekommenden Projekten und
+    \item Minimale Präferenzsumme.
+\end{enumerate}
+
+Wir sind aber gerne bereit, weitere Alternativen zu besprechen.
+
+\appendix
+\section{Anhang: Analyse des Worthy-Kriteriums}
+Das Worthy-Kriterium hat einige ungewünschte Seiteneffekte, weswegen wir es für ungeeignet halten.
+
+Die konkrete Analyse beschäftigt sich mit dem Worthy-Kriterium, wie es bei den Bachelorprojekten angewendet wird. Die Analyse im Master ist vergleichbar.
+
+\subsection{Der Zweit-Wunsch eine:r Student:in kann die Gesamtzufriedenheit verschlechtern, auch wenn sie selber Ihren Erstwunsch erhält.}
+Diese Eigenschaft alleine sehen wir als Ausschlusskriterium für eine solche Zuteilung. Nehmen wir dafür folgendes (verkürztes) Beispiel (in dem die Mindestteilnehmendenzahl pro Projekt 4 ist):
+\begin{itemize}[noitemsep]
+    \item Ben wählt Projekt A auf 1 und Projekt B auf 2.
+    \item Konrad, Jenny und Philipp wählen Projekt B auf 2.
+    \item Felix wählt Projekt A auf 1 und Projekt B auf der 3. 
+\end{itemize}
+Dann muss Felix in seinen Drittwunsch, damit Projekt B zustande kommt. Das wäre nicht der Fall, wenn Ben nicht Projekt B auf der 2 hätte, ganz unabhängig, ob Ben in Projekt B kommt. Jetzt in Felix sehr böse auf Ben, denn seinetwegen hat er ein ,,schlechteres`` Projekt bekommen.
+
+Es liegt nahe, dass dieses Szenario nicht nur theoretisch ist, sondern im vergangenen Jahr tatsächlich eingetreten ist.\footnote{Studierende sprechen natürlich miteinander über ihre abgegebenen Präferenzen. Daher ist dieser Fall relativ bekannt in der Studierendenschaft und hat das Vertrauen in die Fairness des Vergabealgorithmus erschüttert.}
+
+\subsection{Es gibt unstabile Studierende.}
+Der Algorithmus kann eine Zuteilung Z errechnen, zu der es eine andere Zuteilung Z' gibt, sodass Z' nicht nur bessere Total Welfare hat, sondern Z' ist für jeden einzelnen Studi gleich gut oder besser. Auch diesen ,,Quirk`` finden wir für einen Zuteilungsalgorithmus nicht erstrebenswert. Betrachten wir dazu das einfache Beispiel:
+\begin{itemize}[noitemsep]
+    \item 6 Leute wählen Projekt A auf 1. Zwei von denen wählen Projekt B auf der 2.
+    \item 6 Leute wählen Projekt C auf 1. Zwei von denen wählen Projekt B auf der 2.
+\end{itemize} 
+Dann wäre die natürliche Zuteilung 6 Leute nach A, 6 Leute nach C. Der Algorithmus mit Worthy-Regel spuckt aber aus: 4 Leute nach A, 4 Leute nach B und 4 Leute nach C.
+
+\subsection{Soziale Effekte}
+Neben diesen nicht wünschenswerten theoretischen Eigenschaften befürchte ich eine starke negative soziale Konsequenz des Vorgehens. Es gibt dann einen sozialen Druck, nur sehr beliebte Projekte auf die Prioritäten 2 und 3 zu legen, damit keins der skizzierten Szenarien eintritt. Es mag zwar sein, dass dieses Jahr dadurch ein Projekt mit wenigen, aber leidenschaftlichen Studis zustande kommt, längerfristig werden aber \textit{genau diese Projekte durch die Worthy-Regel gefährdet.} Wenn Studis abgehalten werden, solche Projekte auf die 2/3 zu legen, kommen sie genau dann zustande, wenn sie genug Erstwünsche erhalten. Eine (ja möglicherweise wünschenswerte) Besetzung 1,1,1,2 wäre unwahrscheinlicher.
+\end{document}

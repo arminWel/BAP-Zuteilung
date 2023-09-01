@@ -1,0 +1,38 @@
+\usepackage[ngerman]{babel}
+\usepackage[svgnames,table,xcdraw]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage[section]{placeins}
+\geometry{
+  top=3cm,
+  headheight=70pt,
+  headsep=25pt,
+  left=0.75in,
+  right=0.75in %Normal margin, not for corrections
+}
+\usepackage{fontspec}
+\setmainfont[
+    Path=./common/,
+    BoldFont=NeoSansMedium.ttf,
+    ItalicFont=NeoSansItalic.ttf,
+    BoldItalicFont=NeoSansMediumItalic.ttf,
+]{NeoSans.ttf}
+\usepackage{amsthm,amsmath,amssymb,mathtools}
+\usepackage{hyperref}
+\usepackage[capitalize]{cleveref}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{footnote}
+\makesavenoteenv{table}
+
+\definecolor{darkgreen2}{HTML}{38761d}
+\definecolor{darkred2}{HTML}{85200C}
+\newcommand{\good}[1]{\textcolor{darkgreen2}{#1}}
+\newcommand{\bad}[1]{\textcolor{darkred2}{#1}}
+
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{pdfpages}
